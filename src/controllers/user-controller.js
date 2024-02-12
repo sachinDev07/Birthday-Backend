@@ -4,12 +4,8 @@ async function userData(req, res) {
   try {
     const { username, message } = req.body;
 
-    if (!username) {
-      return res.status(400).json({ error: "Please enter username!" });
-    }
-
-    if (!message) {
-      return res.status(400).json({ error: "Please enter your message!" });
+    if (!username || !message) {
+      return res.status(400).json({ error: "All fields are required" });
     }
 
     const user = await User.create(req.body);
